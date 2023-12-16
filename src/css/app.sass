@@ -1,0 +1,193 @@
+// app global css in Sass form
+.bg-yellow-15
+  background: #FFF051
+.bg-green-15
+  background: #024830
+.green-15
+  color: #024830
+
+.rounded
+  border-radius: 5px
+
+.itemLanding
+  border: 2px solid #FFF051
+  margin: 5px
+
+.itemLandingActive
+  background: $grey-10
+  color: white
+  border-radius: 5px
+
+.my-card
+  height: 100%
+  border-radius: 16px
+
+.container
+  margin-left: 300px
+  margin-right: 300px
+
+/* lg */
+@media only screen and (max-width: 1440px)
+  .container
+    margin-left: 150px
+    margin-right: 150px
+
+/* md */
+@media only screen and (max-width: 1024px)
+  .container 
+    margin-left: 24px
+    margin-right: 24px
+
+.card-honey
+  background-color: #FFF051 /* Warna latar belakang */
+  position: relative /* Mengatur posisi elemen */
+
+.card-honey::before
+  content: ""
+  background-image: url('../../public/img/kur/bgatas.png') /* Gambar yang ingin Anda tampilkan */
+  background-size: cover /* Atur ukuran gambar latar belakang */
+  background-repeat: no-repeat /* Jangan mengulang gambar */
+  background-position: center /* Posisi gambar di tengah */
+  opacity: 0.3
+  width: 50% /* Lebar gambar (sesuaikan sesuai kebutuhan) */
+  height: 100% /* Tinggi gambar (sesuaikan sesuai kebutuhan) */
+  position: absolute /* Mengatur posisi gambar */
+  top: 0px /* Atur jarak dari atas */
+  right: 0px /* Atur jarak dari kanan */
+  z-index: 0 /* Menempatkan gambar di atas elemen utama */
+
+.filter-class
+  border: 1px solid #8E8E8E
+  color: #8E8E8E
+  border-radius: 8px
+
+.filter-class-active
+  border: 1px solid #024830
+  color: #024830
+  border-radius: 8px
+
+.border-dash
+  background: #024830
+  border: 3px dashed #FFBB16
+  border-radius: 100000px
+
+.shadow
+  box-shadow: 0px 1px 2px 2px rgba(0, 0, 0, 0.25)
+  border-radius: 16px
+
+.border-shadow
+  background: #FFFFFF
+  border: 1px solid #D9D9D9
+  border-radius: 4px
+
+.border
+  border: 1px solid #8E8E8E
+  border-radius: 16px
+
+.main-page
+  background-color: #EFF0F5
+
+.card-menu
+  background: #FFFFFF
+  border: 1px solid #DADEDE
+  border-radius: 16px
+
+.menu-active
+  background-color: $primary
+  // opacity: 0.4
+.menu-active .q-item__label
+  color: white !important
+.menu-active .q-icon
+  color: white !important
+
+#outer-circle
+  background: rgba(2, 72, 48, 0.55)
+  border-radius: 50%
+  height:96px
+  width:96px
+
+#inner-circle
+  position: relative
+  background: rgba(2, 72, 48, 0.55)
+  border-radius: 50%
+  height:72px
+  width:72px
+  margin: 24px 0px 0px 12px
+
+
+.GPL
+  &__toolbar
+    height: 64px
+  &__toolbar-input
+    width: 35%
+  &__drawer-item
+    line-height: 24px
+    border-radius: 0 24px 24px 0
+    margin-right: 12px
+    .q-item__section--avatar
+      padding-left: 12px
+      .q-icon
+        color: #5f6368
+    .q-item__label:not(.q-item__label--caption)
+      color: #3c4043
+      letter-spacing: .01785714em
+      font-size: .875rem
+      font-weight: 500
+      line-height: 1.25rem
+    &--storage
+      border-radius: 0
+      margin-right: 0
+      padding-top: 24px
+      padding-bottom: 24px
+  &__side-btn
+    &__label
+      font-size: 12px
+      line-height: 24px
+      letter-spacing: .01785714em
+      font-weight: 500
+  @media (min-width: 1024px)
+    &__page-container
+      padding-left: 94px
+
+// table stiky
+.my-sticky-header-column-table
+  /* height or max-height is important */
+  max-height: 410px
+
+  /* specifying max-width so the example can
+    highlight the sticky column on any browser window */
+  max-width: 100%
+
+  td:first-child
+    /* bg color is important for td; just specify one */
+
+  tr th
+    position: sticky
+    /* higher than z-index for td below */
+    z-index: 2
+    /* bg color is important; just specify one */
+    background: #fff
+
+  /* this will be the loading indicator */
+  thead tr:last-child th
+    /* height of all previous header rows */
+    top: 48px
+    /* highest z-index */
+    z-index: 3
+  thead tr:first-child th
+    top: 0
+    z-index: 1
+  tr:first-child th:first-child
+    /* highest z-index */
+    z-index: 3
+
+  td:first-child
+    z-index: 1
+
+  td:first-child, th:first-child
+    left: 0
+
+  /* prevent scrolling behind sticky top row on focus */
+  tbody
+    /* height of all previous header rows */
+    scroll-margin-top: 48px
