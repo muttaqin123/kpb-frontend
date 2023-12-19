@@ -14,5 +14,15 @@ export default [
     label: 'Data Penebusan',
     icon: 'article',
     to: `penebusanPuber${disbunKab.name}`
+  },
+  {
+    label: 'Data Klinik Perkebunan',
+    icon: 'article',
+    to: `klinik${disbunKab.name}`
+  },
+  {
+    label: 'Riwayat Data Klinik Perkebunan',
+    icon: 'article',
+    to: `riwayatKlinik${disbunKab.name}`
   }
 ]

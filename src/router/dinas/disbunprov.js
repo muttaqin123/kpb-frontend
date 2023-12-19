@@ -38,6 +38,21 @@ export default {
       path: 'ealokasi/penebusan/detail/:idTransaksi',
       name: `detailPenebusanPuber${disbunProv.name}`,
       component: () => import('pages/sharedpages/ealokasi/Detail.vue')
+    },
+    {
+      path: 'klinik',
+      name: `klinik${disbunProv.name}`,
+      component: () => import('pages/sharedpages/klinikperkebunan/List.vue')
+    },
+    {
+      path: 'klinik/:id',
+      name: `klinikDetail${disbunProv.value}`,
+      component: () => import('pages/sharedpages/klinikperkebunan/Detail.vue')
+    },
+    {
+      path: 'klinik-riwayat',
+      name: `riwayatKlinik${disbunProv.name}`,
+      component: () => import('pages/sharedpages/klinikperkebunan/List.vue')
     }
   ]
 }

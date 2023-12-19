@@ -16,6 +16,7 @@ import sijelabatPembudiDaya from './sijelabat/pembudidaya'
 import sijelabatDistributor from './sijelabat/distributor'
 import sijelabatKios from './sijelabat/kios'
 import sertifbenihpertanian from './sertifbenihpertanian'
+import klinikPerkebunan from './klinikPerkebunan'
 
 export default [
   // general member
@@ -66,6 +67,14 @@ export default [
       cekFitur: false
     },
     component: () => import('pages/member/dashboardSertifBenihPertanian.vue')
+  },
+  {
+    path: 'fitur/:idRole/:idLayanan/dashboardKlinikPerkebunan',
+    name: 'dashboardKlinikPerkebunan',
+    meta: {
+      cekFitur: false
+    },
+    component: () => import('pages/member/dashboardKlinikPerkebunan.vue')
   },
   {
     path: 'fitur/:idRole/:idLayanan/home-sijelabat',
@@ -152,5 +161,6 @@ export default [
   ...sijelabatPembudiDaya,
   ...sijelabatDistributor,
   ...sijelabatKios,
-  ...sertifbenihpertanian
+  ...sertifbenihpertanian,
+  ...klinikPerkebunan
 ]
