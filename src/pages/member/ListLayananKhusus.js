@@ -18,6 +18,10 @@ const listLayananKhusus = [
   {
     id: 32,
     value: 'dashboardSertifBenihPertanianMember'
+  },
+  {
+    id: 34,
+    value: 'dashboardKlinikPerkebunan'
   }
 ]
 

@@ -9,6 +9,7 @@ import okkpd from './okkpd'
 import lelang from './lelang'
 import bpsb from './bpsb'
 import adminSijelabat from './adminSijelabat'
+import unila from './unila'
 
 export default [
   bpjs,
@@ -21,5 +22,6 @@ export default [
   okkpd,
   lelang,
   bpsb,
-  adminSijelabat
+  adminSijelabat,
+  unila
 ]

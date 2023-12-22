@@ -9,7 +9,7 @@
       </div>
     </div>
     <div v-if="access === 'disbunkabupaten' || access === 'disbunprovinsi'" :class="`${this.$q.screen.xs ? 'q-mx-sm' : 'q-mx-xl '}  q-mt-xl q-mb-md bg-white q-pa-sm q-pt-md`">
-      <span class="q-ml-md text-h6">1. Pengisian Data Diri</span>
+      <span class="q-ml-md text-h6">Pilih Tindakan</span>
       <div class="q-ma-sm row">
         <div class="q-pa-sm">
           <q-btn label="Jawab Pertanyaan" style="background-color: #153D19; color: #fff;" unelevated @click="onJawawbanOpen('jawab')"/>

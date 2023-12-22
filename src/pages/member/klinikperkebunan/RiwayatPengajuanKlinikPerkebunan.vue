@@ -161,7 +161,7 @@ export default {
     },
     onDetailClick (id) {
       console.log('kampang', id)
-      this.$router.push({ name: 'detailPengajuanKlinikPerkebunan', params: { idRole: '6', idLayanan: '34', idFitur: '76', id } })
+      this.$router.push({ name: 'detailPengajuanKlinikPerkebunan', params: { idRole: '6', idLayanan: '34', idFitur: '82', id } })
     },
     onLihatJawabanClick (hasil, rekomendasi) {
       this.jawaban = true

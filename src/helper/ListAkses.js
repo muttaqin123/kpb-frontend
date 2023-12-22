@@ -16,6 +16,12 @@ const pabrikan = {
   index: 'dashboardPabrikan'
 }
 
+const unila = {
+  label: 'Unila',
+  value: 'unila',
+  index: 'dashboardUnila'
+}
+
 const bppmb = {
   label: 'BPPMB',
   value: 'bppmb',
@@ -208,6 +214,7 @@ const all = [
   institusi,
   agenAlsintan,
   adminSijelabat,
+  unila,
   ...listDinas
 ]
 
@@ -240,5 +247,6 @@ export {
   agenAlsintan,
   opt,
   bpsb,
-  adminSijelabat
+  adminSijelabat,
+  unila
 }

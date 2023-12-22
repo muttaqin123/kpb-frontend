@@ -244,7 +244,7 @@ export default {
             this.$notif(res.data.message)
             this.form = model()
             this.data = model()
-            this.$router.push({ name: 'riwayatPengajuanKlinikPerkebunan', params: { idRole: '6', idLayanan: '34', idFitur: '76' } })
+            this.$router.push({ name: 'riwayatPengajuanKlinikPerkebunan', params: { idRole: '6', idLayanan: '34', idFitur: '82' } })
           } else {
             this.$notif(res.data.message, 'negative')
           }
