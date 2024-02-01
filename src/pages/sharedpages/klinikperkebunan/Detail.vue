@@ -307,7 +307,7 @@ export default {
     return {
       form: model(),
       listKomoditas: [],
-      option_intensitas: ['anjing', 'babi'],
+      option_intensitas: [],
       listIntensitas: [
         'Ringan', 'Sedang', 'Berat', 'Puso'
       ],
@@ -321,6 +321,12 @@ export default {
     getData () {
       this.access = this.$getProfile().member.users_login.access
       console.log('this', this.$getProfile())
+      this.$axios.get('master/komoditas/2', this.$createToken())
+        .then(res => {
+          if (this.$parseResponse(res.data, false)) {
+            this.option_intensitas = res.data.result
+          }
+        }).catch(() => this.$commonErrorNotif())
       this.form.komoditas = null
       this.$axios.get(`klinik/detailklinik/${this.$route.params.id}`, this.$createToken())
         .then(res => {
