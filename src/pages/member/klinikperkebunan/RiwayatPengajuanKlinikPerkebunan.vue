@@ -10,7 +10,7 @@
     <div :class="`${this.$q.screen.xs ? 'q-mx-sm' : 'q-mx-xl '}  q-mt-xl q-mb-sm`">
       <div class="row">
         <div class="col-md-6 q-pa-sm">
-          <q-input outlined v-model="text" :dense="dense" bg-color="white" label="Cari Transaksi">
+          <q-input outlined v-model="textsearch" :dense="dense" bg-color="white" label="Cari Transaksi" @update:model-value="getData()">
             <template v-slot:append>
               <q-icon name="search" />
             </template>
@@ -91,7 +91,7 @@
           <span>Status: {{ item.status }}</span>
           <div style="display: flex; justify-content: end;" class="col q-mt-sm q-gutter-sm">
             <q-btn style="background-color: #FFB800;" no-caps label="Lihat Detail"
-              :to="{ name: 'detailKlinikArtikel', params: { id: item.id } }"></q-btn>
+              :to="{ name: 'detailPengajuanKlinikPerkebunan', params: { id: item.id } }"></q-btn>
             <q-btn style="background-color: #9B9B9B; color: #fff;" class="q-mx-sm" no-caps label="Lihat Jawaban"
               @click="onLihatJawabanClick(item.hasil, item.rekomendasi)"></q-btn>
           </div>
@@ -139,6 +139,7 @@ export default {
       selectintensitas: null,
       selectstatus: null,
       selectterbaru: null,
+      textsearch: null,
       option_komoditas: [],
       option_intensitas: [
         { id: 'Ringan', value: 'ringan' },
@@ -150,9 +151,8 @@ export default {
         { id: 'Belum Dijawab', value: 'belum_dijawab' }
       ],
       option_terbaru: [
-        { id: 'Option 1', value: 'option_1' },
-        { id: 'Option 2', value: 'option_2' },
-        { id: 'Option 3', value: 'option_3' }
+        { id: 'Ya', value: 'ya' },
+        { id: 'Tidak', value: 'Tidak' }
       ],
       list: []
     }
@@ -175,7 +175,8 @@ export default {
           komoditas: this.selectkomoditas?.komoditas,
           intensitas: this.selectintensitas?.id,
           status: this.selectstatus?.id,
-          terbaru: this.selectterbaru?.id
+          terbaru: this.selectterbaru?.id,
+          textsearch: this.textsearch
         },
         headers: this.$createToken()
       })
@@ -183,6 +184,7 @@ export default {
         .then(res => {
           if (this.$parseResponse(res.data, false)) {
             this.list = res.data.result
+            console.log(this.list)
           }
         })
         .catch(() => this.$commonErrorNotif())
