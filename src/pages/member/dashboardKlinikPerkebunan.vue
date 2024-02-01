@@ -3,9 +3,8 @@
     <div style="background: #32573F; height: 80px"></div>
     <div :class="`${this.$q.screen.xs ? 'q-mx-sm' : 'q-mx-xl '}  q-mt-xl q-mb-md  q-pa-sm q-pt-md`">
       <div class="row justify-between">
-        <div class="col-sm-12 col-lg-6 col-md-6">
-          <h3 class="text-weight-medium">Selamat Datang di,</h3>
-          <h3 class="text-weight-medium">Klinik Perkebunan</h3>
+        <div class="col-12 col-sm-6">
+          <h2 style="font-size: 20px; font-weight: 700;">Selamat Datang di Klinik Perkebunan</h2>
           <div class="">
             Selamat datang di Aplikasi Klinik Perkebunan! Dapatkan solusi pertanian terbaik dengan saran ahli dan alat
             inovatif, semua hanya dalam satu aplikasi. Kami bekerja sama dengan UPTD Balai Perlintanbun Dinas Perkebunan
@@ -18,7 +17,7 @@
           </div>
           <q-btn href="member" class="text-bold" style="background: #000; color: #fff; margin-top: 10px;" label="Kembali Ke Menu Utama" />
         </div>
-        <div class="col-sm-12 col-lg-4">
+        <div class="col-12 col-sm-4" style="margin-left: 10px;">
           <img src="klinik-perkebunan/dashboard.png" style="width: 100%" /><br />
         </div>
       </div>
@@ -32,7 +31,7 @@
       </div>
       </div>
       <div class="row">
-        <q-card v-for="article in articles" :key="article.id" :style='"margin-left: 10px;"' class='col-3'>
+        <q-card v-for="article in articles" :key="article.id" :style='"margin-bottom: 10px; margin-right:5px"' class='m-2 col-12 col-sm-3'>
         <img src="https://cdn.quasar.dev/img/mountains.jpg">
 
         <q-card-section>
@@ -48,7 +47,7 @@
     </div>
     <div :class="`${this.$q.screen.xs ? 'q-mx-sm' : 'q-mx-xl '}  q-mt-xl q-mb-md  q-pa-sm q-pt-md`">
       <div class="row " style="align-items: center; margin-bottom: 50px;">
-        <div class="col-sm-12 col-lg-6 col-md-6">
+        <div class="col-12 col-sm-6">
           <div style="border-left: 15px solid #32573F; padding-left: 20px; " class="text-h5">Profile UPTD</div>
           <p style="font-weight: 400; font-size: 24px; margin-top: 30px;">
             UPTD BALAI PERLINDUNGAN TANAMAN DINAS PERKEBUNAN PROVINSI LAMPUNG
@@ -63,7 +62,7 @@
             irsanagung@gmail.com
           </p>
         </div>
-        <div class="col-sm-12 col-lg-6 col-md-6">
+        <div class="col-12 col-sm-6">
           <q-card-section class="q-pt-none">
           <GoogleMap :api-key="$mapsApiKey" style="height: 300px" :center="$map.center" :zoom="$map.zoom">
             <Marker :options="{ position: markers }" />
