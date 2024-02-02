@@ -12,10 +12,14 @@
             Anda tanpa ribet. Jelajahi sekarang!
           </div>
           <div style="margin-top: 20px;">
-            <q-btn  href="fitur/6/34/82/pekebun/pengajuan" class="text-bold" style="background: #32573F; color: white; margin-right: 10px;" label="Lakukan pelaporan" />
-            <q-btn href="fitur/6/34/83/pekebun/pengajuan" outline class="text-bold" style="color: #32573F" label="Riwayat pengajuan" />
+            <q-btn :href="`fitur/6/34/${idFiturPengajuan}/pekebun/pengajuan`" class="text-bold"
+              style="background: #32573F; color: white; margin-right: 10px;" label="Lakukan pelaporan" />
+            <q-btn :href="`fitur/6/34/${idFiturRiwayatPengajuan}/pekebun/riwayat`" outline class="text-bold"
+              style="color: #32573F" label="Riwayat pengajuan" />
+
           </div>
-          <q-btn href="member" class="text-bold" style="background: #000; color: #fff; margin-top: 10px;" label="Kembali Ke Menu Utama" />
+          <q-btn href="member" class="text-bold" style="background: #000; color: #fff; margin-top: 10px;"
+            label="Kembali Ke Menu Utama" />
         </div>
         <div class="col-12 col-sm-4" style="margin-left: 10px;">
           <img src="klinik-perkebunan/dashboard.png" style="width: 100%" /><br />
@@ -25,25 +29,27 @@
 
     <div :class="`${this.$q.screen.xs ? 'q-mx-sm' : 'q-mx-xl '}  q-mt-xl q-mb-md  q-pa-sm q-pt-md`">
       <div class="row justify-between" style="align-items: center; margin-bottom: 50px;">
-      <div style="border-left: 15px solid #32573F; padding-left: 20px; " class="text-h5">Informasi Penyakit</div>
-      <div>
-        <q-btn outline class="text-bold" style="color: black; margin-top: 10px;" label="Lihat Seluruh Artikel" />
-      </div>
+        <div style="border-left: 15px solid #32573F; padding-left: 20px; " class="text-h5">Informasi Penyakit</div>
+        <div>
+          <q-btn :href="`fitur/6/34/${idFiturArtikel}/pekebun/artikel`" outline class="text-bold"
+            style="color: black; margin-top: 10px;" label="Lihat Seluruh Artikel" />
+        </div>
       </div>
       <div class="row">
-        <q-card v-for="article in articles" :key="article.id" :style='"margin-bottom: 10px; margin-right:5px"' class='m-2 col-12 col-sm-3'>
-        <img src="https://cdn.quasar.dev/img/mountains.jpg">
+        <q-card v-for="article in articles" :key="article.id" :style='"margin-bottom: 10px; margin-right:5px"'
+          class='m-2 col-12 col-sm-3'>
+          <img src="https://cdn.quasar.dev/img/mountains.jpg">
 
-        <q-card-section>
-          <div class="text-h6">{{ article.judul }}</div>
-          <div class="text-subtitle2">{{ truncateString(article.narasi, 50)  }}</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none">
-          <q-btn  :href="'fitur/6/34/82/pekebun/artikel/'+ article.id " class="full-width text-bold" style="background: #32573F; color: white; margin-right: 10px;" label="Baca Artikel" />
-        </q-card-section>
-      </q-card>
-    </div>
+          <q-card-section>
+            <div class="text-h6">{{ article.judul }}</div>
+            <div class="text-subtitle2">{{ truncateString(article.narasi, 50) }}</div>
+          </q-card-section>
+          <q-card-section class="q-pt-none">
+            <q-btn :href="`fitur/6/34/${idFiturDetailArtikel}/pekebun/artikel/${article.id}`" class="full-width text-bold"
+              style="background: #32573F; color: white; margin-right: 10px;" label="Baca Artikel" />
+          </q-card-section>
+        </q-card>
+      </div>
     </div>
     <div :class="`${this.$q.screen.xs ? 'q-mx-sm' : 'q-mx-xl '}  q-mt-xl q-mb-md  q-pa-sm q-pt-md`">
       <div class="row " style="align-items: center; margin-bottom: 50px;">
@@ -53,7 +59,9 @@
             UPTD BALAI PERLINDUNGAN TANAMAN DINAS PERKEBUNAN PROVINSI LAMPUNG
           </p>
           <p>
-            Terwujudnya tanaman perkebunan yang sehat, berproduksi tinggi, kualitas (mutu) hasil lebih baik yang terbebas dari residu dan emisi bahan pencemar terhadap manusia, hewan peliharaan serta lingkungan hidup, melalui pengembangan teknologi yang berwawasan kaidah-kaidah pengendalian hama terpadu (PHT),
+            Terwujudnya tanaman perkebunan yang sehat, berproduksi tinggi, kualitas (mutu) hasil lebih baik yang terbebas
+            dari residu dan emisi bahan pencemar terhadap manusia, hewan peliharaan serta lingkungan hidup, melalui
+            pengembangan teknologi yang berwawasan kaidah-kaidah pengendalian hama terpadu (PHT),
           </p>
           <p>
             Jl. Raya Tegineneng Km.36, Kab. Pesawaran, Kota Bandar Lampung, Lampung 35211
@@ -64,14 +72,14 @@
         </div>
         <div class="col-12 col-sm-6">
           <q-card-section class="q-pt-none">
-          <GoogleMap :api-key="$mapsApiKey" style="height: 300px" :center="$map.center" :zoom="$map.zoom">
-            <Marker :options="{ position: markers }" />
-          </GoogleMap>
-        </q-card-section>
+            <GoogleMap :api-key="$mapsApiKey" style="height: 300px" :center="$map.center" :zoom="$map.zoom">
+              <Marker :options="{ position: markers }" />
+            </GoogleMap>
+          </q-card-section>
         </div>
 
       </div>
-      </div>
+    </div>
 
     <div class="bg-yellow2 text-bold text-black flex flex-center absolute-bottom">
       <span>Copyright © 2023 Kartu Petani Berjaya. All Right Reserved</span>
@@ -91,7 +99,15 @@ export default {
   },
   data () {
     return {
-      articles: []
+      articles: [],
+      idriwayatPengajuan: null,
+      idPengajuan: null,
+      idArtikel: null,
+      idDetailArtikel: null,
+      idFiturRiwayatPengajuan: null,
+      idFiturPengajuan: null,
+      idFiturArtikel: null,
+      idFiturDetailArtikel: null
     }
   },
   async created () {
@@ -100,6 +116,31 @@ export default {
   methods: {
     async getData () {
       this.loading = true
+
+      this.$axios.get(`users/fitur/${this.$route.params.idLayanan}`, this.$createToken())
+        .then(res => {
+          if (this.$parseResponse(res.data, false)) {
+            this.menu = res.data.result
+            console.log(this.menu)
+            this.idriwayatPengajuan = this.menu.find(item => item.fitur.route_name === 'riwayatPengajuanKlinikPerkebunan')
+            this.idPengajuan = this.menu.find(item => item.fitur.route_name === 'pengajuanKlinikPerkebunan')
+            this.idArtikel = this.menu.find(item => item.fitur.route_name === 'artikelKlinik')
+            this.idDetailArtikel = this.menu.find(item => item.fitur.route_name === 'detailKlinikArtikel')
+
+            if (this.idriwayatPengajuan) {
+              this.idFiturRiwayatPengajuan = this.idriwayatPengajuan.id_fitur
+            }
+            if (this.idPengajuan) {
+              this.idFiturPengajuan = this.idPengajuan.id_fitur
+            }
+            if (this.idArtikel) {
+              this.idFiturArtikel = this.idArtikel.id_fitur
+            }
+            if (this.idDetailArtikel) {
+              this.idFiturDetailArtikel = this.idDetailArtikel.id_fitur
+            }
+          }
+        })
 
       this.$axios.get('klinik/artikels', {
         params: {

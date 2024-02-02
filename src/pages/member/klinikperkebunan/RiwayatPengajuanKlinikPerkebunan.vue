@@ -190,7 +190,6 @@ export default {
         .catch(() => this.$commonErrorNotif())
     },
     onDetailClick (id) {
-      console.log('kampang', id)
       this.$router.push({ name: 'detailPengajuanKlinikPerkebunan', params: { idRole: '6', idLayanan: '34', idFitur: '82', id } })
     },
     onLihatJawabanClick (hasil, rekomendasi) {

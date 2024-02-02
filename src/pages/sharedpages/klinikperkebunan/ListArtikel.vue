@@ -9,7 +9,7 @@
     </div>
     <div :class="`${this.$q.screen.xs ? 'q-mx-sm' : 'q-mx-xl '}  q-mt-xl q-mb-md`">
       <div class="row">
-        <q-card v-for="article in articles" :key="article.id" :style='"margin-left: 10px;"' class='col-3'>
+        <q-card v-for="article in articles" :key="article.id" :style='"margin-bottom: 10px; margin-right:5px"' class='m-2 col-12 col-sm-3'>
         <img src="https://cdn.quasar.dev/img/mountains.jpg">
 
         <q-card-section>
@@ -18,7 +18,7 @@
         </q-card-section>
 
         <q-card-section class="q-pt-none">
-          <q-btn  :href="'fitur/6/34/82/pekebun/artikel/'+ article.id " class="full-width text-bold" style="background: #32573F; color: white; margin-right: 10px;" label="Baca Artikel" />
+          <q-btn  :href="`fitur/6/34/${idFiturDetailArtikel}/pekebun/artikel/${article.id}`" class="full-width text-bold" style="background: #32573F; color: white; margin-right: 10px;" label="Baca Artikel" />
         </q-card-section>
       </q-card>
     </div>
@@ -46,6 +46,7 @@ export default {
   },
   data () {
     return {
+      idFiturDetailArtikel: null,
       rows: [],
       tanggal: '2023/01/01',
       komoditas: '',
@@ -80,6 +81,18 @@ export default {
       this.access = this.$getProfile().member.users_login.access
       const pathArray = window.location.pathname.split('/')[2]
       this.url = pathArray
+
+      this.$axios.get(`users/fitur/${this.$route.params.idLayanan}`, this.$createToken())
+        .then(res => {
+          if (this.$parseResponse(res.data, false)) {
+            this.menu = res.data.result
+            this.idDetailArtikel = this.menu.find(item => item.fitur.route_name === 'detailKlinikArtikel')
+
+            if (this.idDetailArtikel) {
+              this.idFiturDetailArtikel = this.idDetailArtikel.id_fitur
+            }
+          }
+        })
 
       this.$axios.get('klinik/artikels', {
         params: {
