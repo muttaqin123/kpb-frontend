@@ -25,7 +25,7 @@
             outlined
             dense
             accept=".pdf, .png, .jpg, .jpeg"
-            label="Foto Daun">
+            label="Upload Gambar">
               <template v-slot: append>
                 <q-icon name="attach_file"/>
               </template>

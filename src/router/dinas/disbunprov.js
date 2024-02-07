@@ -53,6 +53,11 @@ export default {
       path: 'klinik-riwayat',
       name: `riwayatKlinik${disbunProv.name}`,
       component: () => import('pages/sharedpages/klinikperkebunan/List.vue')
+    },
+    {
+      path: 'klinik-riwayat/:id',
+      name: `riwayatKlinik${disbunProv.value}`,
+      component: () => import('pages/sharedpages/klinikperkebunan/Detail.vue')
     }
   ]
 }

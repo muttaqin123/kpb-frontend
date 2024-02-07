@@ -195,6 +195,8 @@ export default {
 
   data () {
     return {
+      idriwayatPengajuan: null,
+      idFiturRiwayatPengajuan: null,
       fotodaun: null,
       fotobuah: null,
       fotobatang: null,
@@ -208,6 +210,7 @@ export default {
   },
   async created () {
     this.getKomoditas()
+    this.getFitur()
   },
   methods: {
     getKomoditas () {
@@ -218,6 +221,19 @@ export default {
             this.listKomoditas = res.data.result
           }
         }).catch(() => this.$commonErrorNotif())
+    },
+    getFitur () {
+      this.$axios.get(`users/fitur/${this.$route.params.idLayanan}`, this.$createToken())
+        .then(res => {
+          if (this.$parseResponse(res.data, false)) {
+            this.menu = res.data.result
+            this.idriwayatPengajuan = this.menu.find(item => item.fitur.route_name === 'riwayatPengajuanKlinikPerkebunan')
+
+            if (this.idriwayatPengajuan) {
+              this.idFiturRiwayatPengajuan = this.idriwayatPengajuan.id_fitur
+            }
+          }
+        })
     },
     onSubmit () {
       this.$showLoading()
@@ -244,7 +260,7 @@ export default {
             this.$notif(res.data.message)
             this.form = model()
             this.data = model()
-            this.$router.push({ name: 'riwayatPengajuanKlinikPerkebunan', params: { idRole: '6', idLayanan: '34', idFitur: '82' } })
+            this.$router.push({ name: 'riwayatPengajuanKlinikPerkebunan', params: { idRole: '6', idLayanan: '34', idFitur: this.idFiturRiwayatPengajuan } })
           } else {
             this.$notif(res.data.message, 'negative')
           }

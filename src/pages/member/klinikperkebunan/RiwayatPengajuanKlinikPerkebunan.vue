@@ -23,7 +23,7 @@
             label="Jenis Komoditi"
             :options="option_komoditas"
             option-label="komoditas"
-            option-value="sektor_id"
+            option-value="id"
             v-model="selectkomoditas"
             bg-color="white"
             outlined dense
@@ -89,10 +89,11 @@
           <span>Intensitas Serangan: {{ item.intensitasserangan }} </span>
           <span>Tanggal Pengajuan: {{ $parseDate(item.created_at).fullDate }} </span>
           <span>Status: {{ item.status }}</span>
+          <span v-if="item.tanggal_kunjungan">Tanggal Kunjungan Lapangan: {{ $parseDate(item.tanggal_kunjungan).fullDate }} </span>
           <div style="display: flex; justify-content: end;" class="col q-mt-sm q-gutter-sm">
             <q-btn style="background-color: #FFB800;" no-caps label="Lihat Detail"
               :to="{ name: 'detailPengajuanKlinikPerkebunan', params: { id: item.id } }"></q-btn>
-            <q-btn style="background-color: #9B9B9B; color: #fff;" class="q-mx-sm" no-caps label="Lihat Jawaban"
+            <q-btn style="background-color: #FFFFFF; color: black; border-radius: 2px;" class="q-mx-sm" no-caps label="Lihat Jawaban"
               @click="onLihatJawabanClick(item.hasil, item.rekomendasi)"></q-btn>
           </div>
         </div>
@@ -163,11 +164,13 @@ export default {
   methods: {
     getData () {
       this.loading = true
+      console.log('ds')
       this.$axios.get('master/komoditas/2', this.$createToken())
         .finally(() => { this.loading = false })
         .then(res => {
           if (this.$parseResponse(res.data, false)) {
             this.option_komoditas = res.data.result
+            console.log('dshiiausduoiadsn', this.option_komoditas)
           }
         }).catch(() => this.$commonErrorNotif())
       this.$axios.get(`klinik/getlistklinikbynik/${this.$getProfile().nik}`, {
@@ -184,7 +187,6 @@ export default {
         .then(res => {
           if (this.$parseResponse(res.data, false)) {
             this.list = res.data.result
-            console.log(this.list)
           }
         })
         .catch(() => this.$commonErrorNotif())

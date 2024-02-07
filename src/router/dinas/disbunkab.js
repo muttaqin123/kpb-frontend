@@ -53,6 +53,11 @@ export default {
       path: 'klinik-riwayat',
       name: `riwayatKlinik${disbunKab.name}`,
       component: () => import('pages/sharedpages/klinikperkebunan/List.vue')
+    },
+    {
+      path: 'klinik-riwayat/:id',
+      name: `riwayatKlinik${disbunKab.value}`,
+      component: () => import('pages/sharedpages/klinikperkebunan/Detail.vue')
     }
     // {
     //   path: 'ealokasi/penebusan/detail/:idTransaksi',

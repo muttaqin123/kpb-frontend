@@ -31,10 +31,43 @@
           </q-input>
         </div>
         <div class="q-pa-sm col-4">
-          <q-select v-if="kecamatan.items.length > 0" :class="type" v-model="selectedKecamatan" outlined @update:model-value="getData()" :options="kecamatan.items" label="Pilih Kecamatan" use-input dense clearable />
+          <q-select v-if="komoditas.items.length > 0" label="Pilih Komoditas" :options="komoditas.items" use-input v-model="selectedKomoditas" outlined dense clearable @update:model-value="getData()"/>
         </div>
         <div class="q-pa-sm col-4">
-          <q-select v-if="komoditas.items.length > 0" label="Pilih Komoditas" :options="komoditas.items" use-input v-model="selectedKomoditas" outlined dense clearable @update:model-value="getData()"/>
+          <q-select v-if="kecamatan.items.length > 0 && this.access === 'disbunkabupaten'" :class="type" v-model="selectedKecamatan" outlined @update:model-value="getData()" :options="kecamatan.items" label="Pilih Kecamatan" use-input dense clearable />
+          <area-kabupaten
+              :auto-load="!kab"
+              v-if="this.access === 'disbunprovinsi'"
+              :withAction="!kec"
+              :action="getData"
+              dense outlined
+              :readonly="kab"
+              :kec="$getProfile()?.member?.reg_regencies"
+              :loadKec="!kec"
+              :rules="false"
+            />
+        </div>
+        <div class="q-pa-sm col-4">
+          <area-kecamatan
+              :auto-load="kec"
+              v-if="this.access === 'disbunprovinsi'"
+              dense outlined
+              :action="getData"
+              :readonly="kec"
+              :desa="$getProfile()?.member?.reg_districts"
+              :loadDesa="kec"
+              withAction
+              :rules="false"
+            />
+        </div>
+        <div class="q-pa-sm col-4">
+          <area-desa
+              :rules="false"
+              :action="getData"
+              v-if="this.access === 'disbunprovinsi'"
+              dense outlined
+              withAction
+            />
         </div>
       </div>
     </div>
@@ -53,7 +86,7 @@
               <q-badge class="q-pa-sm" :color="getBackgroundColor(props.row.status)" :label="`${props.row.status}`" />
             </q-td>
             <q-td key="tanggal_kunjungan" :props="props">
-              {{ props.row.tanggal_kunjungan }}
+              {{ formatDate(props.row.created_at) }}
             </q-td>
             <q-td key="nama" :props="props">
               {{ props.row.nama }}
@@ -104,7 +137,15 @@ export default {
       kecamatan: {
         items: [] // Inisialisasi sebagai array kosong
       },
+      kecamatanprov: {
+        items: [] // Inisialisasi sebagai array kosong
+      },
+      kabupaten: {
+        items: [] // Inisialisasi sebagai array kosong
+      },
       selectedKecamatan: null,
+      selectedKecamatanprov: null,
+      selectedKabupaten: null,
       pagination: {
         sortBy: 'id',
         descending: false,
@@ -129,8 +170,17 @@ export default {
       .get('/areas/kecamatan/' + LocalStorage.getItem('datauser').member.reg_regencies.id)
       .finally(() => this.$hide())
       .then((res) => {
-        console.log(res.data.result)
         this.kecamatan.items = res.data.result.map(item => ({
+          label: item.name,
+          value: item.id
+        }))
+      })
+      .catch(() => this.$commonErrorNotif())
+    this.$axios
+      .get('/areas/kabupaten/' + LocalStorage.getItem('datauser').member.reg_provinces.id)
+      .finally(() => this.$hide())
+      .then((res) => {
+        this.kabupaten.items = res.data.result.map(item => ({
           label: item.name,
           value: item.id
         }))
@@ -149,6 +199,18 @@ export default {
     }
   },
   methods: {
+    formatDate (datetime) {
+      // Buat objek Date dari nilai datetime
+      const dateObj = new Date(datetime)
+
+      // Dapatkan tanggal, bulan, dan tahun
+      const day = dateObj.getDate()
+      const month = dateObj.getMonth() + 1 // Bulan dimulai dari 0
+      const year = dateObj.getFullYear()
+
+      // Format tanggal
+      return `${day < 10 ? '0' + day : day}-${month < 10 ? '0' + month : month}-${year}`
+    },
     getURLSegment () {
       const pathArray = window.location.pathname.split('/')
       // Assuming the structure is always like /disbun-kabupaten/klinik
@@ -163,7 +225,11 @@ export default {
       const params = {
         tanggal_kunjungan: this.tanggal,
         kecamatan: this.selectedKecamatan ? this.selectedKecamatan.label : '',
-        komoditas: this.selectedKomoditas ? this.selectedKomoditas.label : ''
+        kab: this.$store.state.area.kabupaten ? this.$store.state.area.kabupaten.name : '',
+        kec: this.$store.state.area.kecamatan ? this.$store.state.area.kecamatan.name : '',
+        desa: this.$store.state.area.desa ? this.$store.state.area.desa.name : '',
+        komoditas: this.selectedKomoditas ? this.selectedKomoditas.label : '',
+        kabupaten: LocalStorage.getItem('datauser').member.reg_regencies.name ? LocalStorage.getItem('datauser').member.reg_regencies.name : ''
       }
       const terbaruEndpoint = `klinik/getlistklinik/${this.access}/terbaru`
       const riwayatEndpoint = `klinik/getlistklinik/${this.access}/riwayat`
@@ -175,6 +241,8 @@ export default {
             this.rows = res.data.result
             this.pagination = res.data.paginate
           }
+          console.log(res.data.result)
+          console.log(this.segment)
         }).catch(() => this.$commonErrorNotif())
     },
     async getData () {

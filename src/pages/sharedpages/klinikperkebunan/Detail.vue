@@ -138,8 +138,8 @@
             dense
             disable
             label="Foto Daun"></q-input>
-            <q-btn label="Lihat Foto Daun" outline unelevated :href="`${$baseURL}/file-klinik/${form.fotodaun}`" tag="a" target="_blank"/>
-
+            <q-btn v-if="form.fotodaun" label="Lihat Foto Daun" outline unelevated :href="`${$baseURL}/file-klinik/${form.fotodaun}`" tag="a" target="_blank"/>
+            <q-btn v-if="!form.fotodaun" label="Foto Tidak Ada" outline unelevated disabled/>
         </div>
         <div class="q-pa-sm row">
           <q-input
@@ -148,7 +148,8 @@
             dense
             disable
             label="Foto Buah"></q-input>
-            <q-btn label="Lihat Foto Buah" outline unelevated :href="`${$baseURL}/file-klinik/${form.fotobuah}`" tag="a" target="_blank"/>
+            <q-btn v-if="form.fotobuah" label="Lihat Foto Buah" outline unelevated :href="`${$baseURL}/file-klinik/${form.fotobuah}`" tag="a" target="_blank"/>
+            <q-btn v-if="!form.fotobuah" label="Foto Tidak Ada" outline unelevated disabled/>
         </div>
         <div class="q-pa-sm row">
           <q-input
@@ -157,7 +158,8 @@
             dense
             disable
             label="Foto Batang"></q-input>
-            <q-btn label="Lihat Foto Batang" outline unelevated :href="`${$baseURL}/file-klinik/${form.fotobatang}`" tag="a" target="_blank"/>
+            <q-btn v-if="form.fotobatang" label="Lihat Foto Batang" outline unelevated :href="`${$baseURL}/file-klinik/${form.fotobatang}`" tag="a" target="_blank"/>
+            <q-btn v-if="!form.fotobatang" label="Foto Tidak Ada" outline unelevated disabled/>
 
         </div>
         <div class="q-pa-sm row">
@@ -167,7 +169,8 @@
             dense
             disable
             label="Foto Akar"></q-input>
-            <q-btn label="Lihat Foto Akar" outline unelevated :href="`${$baseURL}/file-klinik/${form.fotoakar}`" tag="a" target="_blank"/>
+            <q-btn v-if="form.fotoakar" label="Lihat Foto Akar" outline unelevated :href="`${$baseURL}/file-klinik/${form.fotoakar}`" tag="a" target="_blank"/>
+            <q-btn v-if="!form.fotoakar" label="Foto Tidak Ada" outline unelevated disabled/>
 
         </div>
         <div class="q-pa-sm">

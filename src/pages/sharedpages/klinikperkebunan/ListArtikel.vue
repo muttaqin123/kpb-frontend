@@ -10,7 +10,8 @@
     <div :class="`${this.$q.screen.xs ? 'q-mx-sm' : 'q-mx-xl '}  q-mt-xl q-mb-md`">
       <div class="row">
         <q-card v-for="article in articles" :key="article.id" :style='"margin-bottom: 10px; margin-right:5px"' class='m-2 col-12 col-sm-3'>
-        <img src="https://cdn.quasar.dev/img/mountains.jpg">
+        <img v-if="!article.gambar" src="https://cdn.quasar.dev/img/mountains.jpg">
+        <img v-if="article.gambar" :src="`${$baseURL}/file-klinik/${article.gambar}`">
 
         <q-card-section>
           <div class="text-h6">{{ article.judul }}</div>
